@@ -1,0 +1,59 @@
+# ---------------------------------------------------------------------------
+# Root .gitignore — applies to the whole repo (frontend/, backend/, future dirs)
+# Patterns without a leading slash match at any depth.
+# ---------------------------------------------------------------------------
+
+# Dependencies
+node_modules/
+.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# Environment / secrets — never commit real keys.
+# .env.example files ARE committed (templates).
+.env
+.env.*
+!.env.example
+
+# Next.js
+.next/
+out/
+next-env.d.ts
+
+# Build output
+build/
+dist/
+
+# Vercel
+.vercel
+
+# TypeScript
+*.tsbuildinfo
+
+# Testing / coverage
+coverage/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# OS junk
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*.pem
+
+# Claude Code local (personal) settings — shared config can still be committed
+.claude/settings.local.json
