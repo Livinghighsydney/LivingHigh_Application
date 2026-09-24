@@ -1,3 +1,5 @@
+import { fileURLToPath } from "url";
+import path from "path";
 import {
   Document,
   Page,
@@ -9,6 +11,11 @@ import {
 } from "@react-pdf/renderer";
 import { COMPANY } from "../config/company.js";
 import type { InspectionWithMedia } from "../types/database.js";
+
+const LOGO_PATH = path.resolve(
+  path.dirname(fileURLToPath(import.meta.url)),
+  "../../../logo-lh.png",
+);
 
 /**
  * PDF report matching `mockup/report_format.pdf`. This is a working scaffold:
@@ -93,11 +100,14 @@ function ReportDocument({ inspection, galleryUrl, signedPhotos }: ReportData) {
       {/* Cover page */}
       <Page size="A4" style={styles.page}>
         <PageChrome address={address} />
-        <View style={styles.companyHeader}>
-          <Text>{COMPANY.name}</Text>
-          <Text>{COMPANY.address}</Text>
-          <Text>{COMPANY.phone}</Text>
-          <Text>{COMPANY.email}</Text>
+        <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 8 }}>
+          <Image src={LOGO_PATH} style={{ width: 120, height: 40, objectFit: "contain" }} />
+          <View style={styles.companyHeader}>
+            <Text>{COMPANY.name}</Text>
+            <Text>{COMPANY.address}</Text>
+            <Text>{COMPANY.phone}</Text>
+            <Text>{COMPANY.email}</Text>
+          </View>
         </View>
         <View style={styles.rule} />
         <Text style={styles.title}>{typeLabel} Inspection Report</Text>
@@ -105,10 +115,6 @@ function ReportDocument({ inspection, galleryUrl, signedPhotos }: ReportData) {
         <Detail label="Address" value={address} />
         <Detail label="Owner Name" value={inspection.owner_name} />
         <Detail label="Tenant Name" value={inspection.tenant_name} />
-        <Detail label="Lease Start" value={inspection.lease_start} />
-        <Detail label="Lease Expiry" value={inspection.lease_expiry} />
-        <Detail label="Lease Details" value={inspection.lease_details} />
-        <Detail label="Rented for" value={inspection.rented_for} />
         <Detail label="Inspection Date" value={inspection.inspection_date} />
 
         <Text style={styles.body}>
