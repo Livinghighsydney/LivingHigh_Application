@@ -57,3 +57,7 @@ desktop.ini
 
 # Claude Code local (personal) settings — shared config can still be committed
 .claude/settings.local.json
+
+# Claude-generated output (brag videos, snapshots, compositions)
+brag-output-*/
+*.mp4
